@@ -1,0 +1,17 @@
+<h1>My Blog</h1>
+
+<% if (!posts || posts.length === 0) { %>
+  <p>No posts yet!</p>
+<% } else { %>
+  <% posts.forEach(post => { %>
+    <div style="border:1px solid #ccc; padding:10px; margin-bottom:10px;">
+      <h2><%= post.title %></h2>
+      <p><%= post.body %></p>
+      <small><%= new Date(post.date).toDateString() %></small>
+    </div>
+  <% }) %>
+<% } %>
+
+
+
+
