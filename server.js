@@ -1,38 +1,44 @@
 require('dotenv').config();
-console.log('MONGO_URI:', process.env.MONGO_URI); // debug to see if loaded
 
 const express = require('express');
 const expressLayouts = require('express-ejs-layouts');
-const session = require('express-session');  // <-- add this line
 const connectDB = require('./config/db');
-
-connectDB();
+const cookieParser = require('cookie-parser');
+const session = require('express-session');
+const MongoStore = require('connect-mongo');
+const methodOverride = require('method-override');
 
 const app = express();
+
+// Connect to MongoDB
+connectDB();
 
 // Middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static('public'));
 app.use(expressLayouts);
-app.set('layout', './layouts/main');
+app.set('layout', 'layouts/main');
 app.set('view engine', 'ejs');
+app.use(cookieParser());
+app.use(methodOverride('_method'));
 
-// --------------------------
-// Session middleware here
+// Sessions with MongoDB persistence
 app.use(
   session({
-    secret: 'yourSecretKey', // replace with a secure key
+    secret: 'yourSecretKey', // replace with a strong secret
     resave: false,
-    saveUninitialized: false
+    saveUninitialized: false,
+    store: MongoStore.create({ mongoUrl: process.env.MONGO_URI })
   })
 );
-// --------------------------
 
-app.use('/', require('./routes/main'));
-app.use('/admin', require('./routes/admin')); // make sure you add this for admin routes
+// Routes
+app.use('/', require('./routes/main'));       // public blog
+app.use('/admin', require('./routes/admin')); // admin routes
 
 const PORT = process.env.PORT || 4000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+app.listen(PORT, () => console.log(`✅ Server running on http://localhost:${PORT}`));
+
 
 

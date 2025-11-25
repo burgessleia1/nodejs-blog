@@ -1,4 +1,26 @@
-<h1>Admin Dashboard</h1>
-<p>Welcome, <%= process.env.ADMIN_USER %>!</p>
-<a href="/admin/logout">Logout</a>
+<h2>Admin Dashboard</h2>
+
+<a href="/admin/posts/new">Add New Post</a>
+<a href="/admin/logout" style="margin-left:20px;">Logout</a>
+
+<hr/>
+
+<h3>All Posts</h3>
+
+<% if (posts && posts.length > 0) { %>
+  <ul>
+    <% posts.forEach(post => { %>
+      <li>
+        <strong><%= post.title %></strong>
+        <a href="/admin/posts/<%= post._id %>/edit">Edit</a>
+        <form action="/admin/posts/<%= post._id %>?_method=DELETE" method="POST" style="display:inline;">
+          <button type="submit">Delete</button>
+        </form>
+      </li>
+    <% }) %>
+  </ul>
+<% } else { %>
+  <p>No posts yet. <a href="/admin/posts/new">Add one now</a></p>
+<% } %>
+
 
