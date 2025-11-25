@@ -26,7 +26,7 @@ app.use(methodOverride('_method'));
 // Sessions with MongoDB persistence
 app.use(
   session({
-    secret: 'yourSecretKey', // replace with a strong secret
+    secret: 'yourSecretKey', 
     resave: false,
     saveUninitialized: false,
     store: MongoStore.create({ mongoUrl: process.env.MONGO_URI })
@@ -39,6 +39,8 @@ app.use('/admin', require('./routes/admin')); // admin routes
 
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => console.log(`✅ Server running on http://localhost:${PORT}`));
+
+
 
 
 

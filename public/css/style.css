@@ -1,0 +1,142 @@
+/* ----------------------------------------- */
+/* General body styling */
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background-color: #f7f7f7;
+    color: #333;
+}
+
+/* Headings */
+h1, h2, h3 {
+    color: #222;
+}
+
+/* Links */
+a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Buttons */
+button {
+    padding: 8px 12px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Forms */
+form {
+    margin-top: 10px;
+}
+
+label {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+input[type="text"], textarea {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+/* ----------------------------------------- */
+/* Admin Dashboard & posts list */
+.post {
+    margin-bottom: 15px;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 4px;
+    box-shadow: 0 0 3px rgba(0,0,0,0.1);
+}
+
+/* Pagination */
+.pagination {
+    margin-top: 20px;
+}
+
+.pagination a, .pagination span {
+    margin: 0 5px;
+    padding: 6px 10px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    text-decoration: none;
+    color: #007bff;
+}
+
+.pagination span {
+    background-color: #007bff;
+    color: #fff;
+    font-weight: bold;
+    border-color: #007bff;
+}
+
+/* ----------------------------------------- */
+/* Public-facing blog pages */
+.posts-list {
+    list-style: none;
+    padding: 0;
+}
+
+.posts-list li {
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+}
+
+.posts-list li h2 {
+    margin: 0;
+    margin-bottom: 5px;
+    font-size: 1.5em;
+}
+
+.posts-list li p {
+    margin: 5px 0;
+}
+
+.post-content {
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+}
+
+.post-content h2 {
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.post-content p {
+    line-height: 1.6;
+}
+
+/* Admin actions on single post */
+.admin-actions {
+    margin-top: 15px;
+}
+
+.admin-actions a,
+.admin-actions form {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+

@@ -1,14 +1,26 @@
-<h2>Add New Post</h2>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Add New Post</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <h2>Add New Post</h2>
 
-<form action="/admin/posts" method="POST">
-  <label>Title:</label><br/>
-  <input type="text" name="title" required /><br/><br/>
-  
-  <label>Body:</label><br/>
-  <textarea name="body" rows="5" required></textarea><br/><br/>
-  
-  <button type="submit">Create Post</button>
-</form>
+  <form action="/admin/posts" method="POST">
+    <label>Title:</label><br>
+    <input type="text" name="title" required><br><br>
 
-<a href="/admin/dashboard">Back to Dashboard</a>
+    <label>Body:</label><br>
+    <textarea name="body" rows="10" cols="50" required></textarea><br><br>
+
+    <button type="submit">Create Post</button>
+  </form>
+
+  <a href="/admin/dashboard">Back to Dashboard</a>
+</body>
+</html>
+
+
 

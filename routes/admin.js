@@ -1,7 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const Post = require('../models/Post');
-const { isAdmin } = require('../middleware/auth'); // <- import middleware
+const { isAdmin } = require('../middleware/auth'); // middleware to check admin
+
+// ------------------ LOGIN / LOGOUT ------------------
 
 // Login page
 router.get('/login', (req, res) => {
@@ -26,11 +28,27 @@ router.get('/logout', (req, res) => {
   req.session.destroy(() => res.redirect('/admin/login'));
 });
 
-// Dashboard (list all posts)
+// ------------------ DASHBOARD / POSTS ------------------
+
+// Dashboard (list posts with pagination)
 router.get('/dashboard', isAdmin, async (req, res) => {
+  const page = parseInt(req.query.page) || 1;
+  const limit = 5; // posts per page
+  const skip = (page - 1) * limit;
+
   try {
-    const posts = await Post.find().sort({ createdAt: -1 }).lean();
-    res.render('admin/dashboard', { posts });
+    const totalPosts = await Post.countDocuments();
+    const posts = await Post.find()
+      .sort({ createdAt: -1 })
+      .skip(skip)
+      .limit(limit)
+      .lean();
+
+    res.render('admin/dashboard', {
+      posts,
+      currentPage: page,
+      totalPages: Math.ceil(totalPosts / limit),
+    });
   } catch (err) {
     console.error(err);
     res.status(500).send('Error loading dashboard');
@@ -89,6 +107,9 @@ router.delete('/posts/:id', isAdmin, async (req, res) => {
 });
 
 module.exports = router;
+
+
+
 
 
 

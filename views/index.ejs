@@ -1,16 +1,22 @@
 <h1>My Blog</h1>
 
-<% if (!posts || posts.length === 0) { %>
-  <p>No posts yet!</p>
+<% if (posts && posts.length > 0) { %>
+  <ul>
+    <% posts.forEach(post => { %>
+      <li>
+        <a href="/posts/<%= post._id %>"><%= post.title %></a>
+        <p><%= post.body.substring(0, 100) %>...</p>
+      </li>
+    <% }) %>
+  </ul>
 <% } else { %>
-  <% posts.forEach(post => { %>
-    <div style="border:1px solid #ccc; padding:10px; margin-bottom:10px;">
-      <h2><%= post.title %></h2>
-      <p><%= post.body %></p>
-      <small><%= new Date(post.date).toDateString() %></small>
-    </div>
-  <% }) %>
+  <p>No posts yet.</p>
 <% } %>
+
+
+
+
+
 
 
 

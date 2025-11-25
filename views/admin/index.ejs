@@ -1,0 +1,19 @@
+<h1>All Posts</h1>
+
+<form method="GET" action="/" style="margin-bottom: 20px;">
+  <input type="text" name="search" placeholder="Search posts..." value="<%= search %>">
+  <button type="submit">Search</button>
+</form>
+
+<% posts.forEach(post => { %>
+  <div style="border-bottom: 1px solid #ccc; padding: 10px 0;">
+    <a href="/posts/<%= post._id %>"><h2><%= post.title %></h2></a>
+    <p><%= post.body.substring(0, 100) %>...</p>
+  </div>
+<% }) %>
+
+<div style="margin-top: 20px;">
+  <% for (let i = 1; i <= totalPages; i++) { %>
+    <a href="/?page=<%= i %>&search=<%= search %>"><%= i %></a>
+  <% } %>
+</div>
